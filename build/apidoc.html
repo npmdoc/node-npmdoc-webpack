@@ -51,7 +51,7 @@
 
         href="https://github.com/webpack/webpack"
 
-    >webpack (v2.3.2)</a>
+    >webpack (v2.3.3)</a>
 </h1>
 <h4>Packs CommonJs/AMD modules for the browser. Allows to split your codebase into multiple bundles, which can be loaded on demand. Support loaders to preprocess files, i.e. json, jsx, es7, css, less, ... and your custom stuff.</h4>
 <div class="apidocSectionDiv"><a
@@ -721,6 +721,12 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">webpack.</span>optimize</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">webpack.</span>system</span>
 
         </li>
 
@@ -3084,6 +3090,19 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.webpack.system">module webpack.system</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.webpack.system.import">
+            function <span class="apidocSignatureSpan">webpack.system.</span>import
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.webpack.webpack_web">module webpack.webpack_web</a><ol>
 
         <li>
@@ -4956,7 +4975,7 @@
 		if(compiler.compilers) {
 			const states = new Array(compiler.compilers.length);
 			compiler.compilers.forEach(function(compiler, idx) {
-				compiler.apply(new ProgressPlugin((p, msg) =&#x3e; {
+				compiler.apply(new ProgressPlugin(function(p, msg) {
 					states[idx] = Array.prototype.slice.apply(arguments);
 					handler.apply(null, [
 						states.map(state =&#x3e; state &#x26;&#x26; state[0] || 0).reduce((a, b) =&#x3e; a + b) / states.length,
@@ -5751,6 +5770,8 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
+
+
 
 
 
@@ -6916,21 +6937,21 @@ webpack.WebpackOptionsApply = WebpackOptionsApply;
 	});
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-			const warningAndCallback = function warningAndCallback(err) {
-				err.origin = module;
-				_this.warnings.push(err);
-				callback();
-			};
 
-			const factory = item[0];
-			factory.<span class="apidocCodeKeywordSpan">create</span>({
-				contextInfo: {
-					issuer: module.nameForCondition &#x26;&#x26; module.nameForCondition(),
-					compiler: _this.compiler.name
-				},
-				context: module.context,
-				dependencies: dependencies
-			}, function factoryCallback(err, dependentModule) {
+
+
+
+
+module.exports = function(originalModule) {
+	if(!originalModule.webpackPolyfill) {
+		var module = Object.<span class="apidocCodeKeywordSpan">create</span>(originalModule);
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, &#x22;loaded&#x22;, {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
 ...</pre></li>
     </ul>
 
@@ -11187,21 +11208,21 @@ webpack.WebpackOptionsApply = WebpackOptionsApply;
 	});
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-			const warningAndCallback = function warningAndCallback(err) {
-				err.origin = module;
-				_this.warnings.push(err);
-				callback();
-			};
 
-			const factory = item[0];
-			factory.<span class="apidocCodeKeywordSpan">create</span>({
-				contextInfo: {
-					issuer: module.nameForCondition &#x26;&#x26; module.nameForCondition(),
-					compiler: _this.compiler.name
-				},
-				context: module.context,
-				dependencies: dependencies
-			}, function factoryCallback(err, dependentModule) {
+
+
+
+
+module.exports = function(originalModule) {
+	if(!originalModule.webpackPolyfill) {
+		var module = Object.<span class="apidocCodeKeywordSpan">create</span>(originalModule);
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, &#x22;loaded&#x22;, {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
 ...</pre></li>
     </ul>
 
@@ -14697,6 +14718,26 @@ You can however specify the name of the async chunk by passing the desired strin
 								condition.preserve = output.comments;
 								condition.extract = options.extractComments;
 							} else if(Object.prototype.hasOwnProperty.call(options.extractC ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.webpack.system" id="apidoc.module.webpack.system">module webpack.system</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.webpack.system.import" id="apidoc.element.webpack.system.import">
+        function <span class="apidocSignatureSpan">webpack.system.</span>import
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">import = function () {
+		throw new Error(&#x22;System.import cannot be used indirectly&#x22;);
+	}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
