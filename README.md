@@ -1,6 +1,6 @@
 # npmdoc-webpack
 
-#### api documentation for  [webpack (v2.4.1)](https://github.com/webpack/webpack)  [![npm package](https://img.shields.io/npm/v/npmdoc-webpack.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-webpack) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-webpack.svg)](https://travis-ci.org/npmdoc/node-npmdoc-webpack)
+#### basic api documentation for  [webpack (v2.4.1)](https://github.com/webpack/webpack)  [![npm package](https://img.shields.io/npm/v/npmdoc-webpack.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-webpack) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-webpack.svg)](https://travis-ci.org/npmdoc/node-npmdoc-webpack)
 
 #### Packs CommonJs/AMD modules for the browser. Allows to split your codebase into multiple bundles, which can be loaded on demand. Support loaders to preprocess files, i.e. json, jsx, es7, css, less, ... and your custom stuff.
 
